@@ -1,0 +1,48 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+# User-level override (takes precedence over /etc/i3status.conf) so this
+# never touches the package-owned system file.
+
+general {
+        colors = true
+        interval = 5
+        color_good = "#a6e3a1"
+        color_degraded = "#f9e2af"
+        color_bad = "#f38ba8"
+}
+
+order += "wireless _first_"
+order += "battery all"
+order += "disk /"
+order += "memory"
+order += "load"
+
+wireless _first_ {
+        format_up = "  %essid (%quality)"
+        format_down = "  down"
+}
+
+battery all {
+        format = "%status %percentage"
+        format_down = ""
+        status_chr = " "
+        status_bat = " "
+        status_unk = " "
+        status_full = " "
+        integer_battery_capacity = true
+        last_full_capacity = true
+}
+
+disk "/" {
+        format = "  %avail"
+}
+
+memory {
+        format = "  %used / %total"
+        threshold_degraded = "1G"
+        format_degraded = "  LOW: %available"
+}
+
+load {
+        format = "  %1min"
+}
